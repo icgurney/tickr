@@ -11,7 +11,7 @@ public class AlpacaService {
 
     public LastQuote getLastQuote(String symbol) {
         try {
-            AlpacaAPI alpacaAPI = new AlpacaAPI(System.getenv("KEY_ID"), System.getenv("SECRET"), System.getenv("BASE_API_URL"));
+            AlpacaAPI alpacaAPI = new AlpacaAPI(System.getenv("KEY_ID"), System.getenv("SECRET"), null, System.getenv("BASE_API_URL"), System.getenv("BASE_DATA_URL"));
 
             LastQuoteResponse lastQuoteResponse = alpacaAPI.getLastQuote(symbol);
             return lastQuoteResponse.getLast();
