@@ -8,10 +8,11 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class AlpacaService {
-    AlpacaAPI alpacaAPI = new AlpacaAPI();
 
     public LastQuote getLastQuote(String symbol) {
         try {
+            AlpacaAPI alpacaAPI = new AlpacaAPI(System.getenv("KEY_ID"), System.getenv("SECRET"));
+
             LastQuoteResponse lastQuoteResponse = alpacaAPI.getLastQuote(symbol);
             return lastQuoteResponse.getLast();
         } catch (AlpacaAPIRequestException e) {
