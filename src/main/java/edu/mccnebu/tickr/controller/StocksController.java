@@ -2,6 +2,7 @@ package edu.mccnebu.tickr.controller;
 
 import edu.mccnebu.tickr.AlpacaService;
 import edu.mccnebu.tickr.model.Stock;
+import net.jacobpeterson.domain.alpaca.marketdata.LastQuote;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,7 +16,7 @@ public class StocksController {
     private AlpacaService alpacaService;
 
     @GetMapping(value = "/{symbol}")
-    public void getQuote(@PathVariable String symbol) {
-        alpacaService.getLastQuote(symbol);
+    public LastQuote getQuote(@PathVariable String symbol) {
+        return alpacaService.getLastQuote(symbol);
     }
 }

@@ -2,6 +2,7 @@ package edu.mccnebu.tickr;
 
 import net.jacobpeterson.alpaca.AlpacaAPI;
 import net.jacobpeterson.alpaca.rest.exception.AlpacaAPIRequestException;
+import net.jacobpeterson.domain.alpaca.marketdata.LastQuote;
 import net.jacobpeterson.domain.alpaca.marketdata.LastQuoteResponse;
 import org.springframework.stereotype.Service;
 
@@ -9,13 +10,13 @@ import org.springframework.stereotype.Service;
 public class AlpacaService {
     AlpacaAPI alpacaAPI = new AlpacaAPI();
 
-    public void getLastQuote(String symbol) {
+    public LastQuote getLastQuote(String symbol) {
         try {
-            // Print out the last quote of AAPL
             LastQuoteResponse lastQuoteResponse = alpacaAPI.getLastQuote(symbol);
-            System.out.println(lastQuoteResponse.toString());
+            return lastQuoteResponse.getLast();
         } catch (AlpacaAPIRequestException e) {
             e.printStackTrace();
+            return null;
         }
     }
 }
